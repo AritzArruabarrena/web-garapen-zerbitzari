@@ -1,3 +1,4 @@
+import os
 def menua():
     print(" 1.Bezeroen telefonoa kontsultatu \n 2.Bezeroaren telefonoa berria gehitu \n 3.Bezeroaren telefonoa ezabatu \n 4.Irten")
 
@@ -18,7 +19,10 @@ def main():
         x = input("Aukeratu bat:")
         
         if x == "1":
-            print(leer_fichero())
+            if not os.path.exists('Ariketa3/listin.txt'):
+               x = 0
+            else:
+                x = leer_fichero()  
         elif x == "2":
             print("Hola2")
         elif x == "3":
