@@ -4,46 +4,49 @@ def menua():
     print(" 1.Bezeroen telefonoa kontsultatu \n 2.Bezeroaren telefonoa berria gehitu \n 3.Bezeroaren telefonoa ezabatu \n 4.Irten")
 
 def escribe_fichero(nombre, numero):
-    # Crear el directorio si no existe
     if not os.path.exists('Ariketa3'):
         os.makedirs('Ariketa3')
     
-    # Añadir el nombre y número al fichero
-    with open('Ariketa3/listin.txt', 'a') as fichero:  # 'a' para añadir
-        fichero.write(f"{nombre}, {numero} \n")  # Añadir nombre y número separados por coma
+    with open('Ariketa3/listin.txt', 'a') as fichero:  
+        fichero.write(f"{nombre}, {numero} \n") 
 
 def leer_fichero():
-    # Leer todas las líneas del fichero
     with open('Ariketa3/listin.txt', 'r') as fichero:
-        return fichero.readlines()  # Devolver las líneas en forma de lista
+        return fichero.readlines()
 
 def crear_fichero():
-    # Crear el directorio si no existe
     if not os.path.exists('Ariketa3'):
         os.makedirs('Ariketa3')
     
-    # Crear el fichero si no existe
     if not os.path.exists('Ariketa3/listin.txt'):
         with open('Ariketa3/listin.txt', 'w') as fichero:
-            fichero.write("")  # Crear un fichero vacío
+            fichero.write("") 
 
 def buscar_numero_por_nombre(nombre):
-    # Buscar el número de teléfono correspondiente a un nombre
     lineas = leer_fichero()
     for linea in lineas:
-        if "," in linea:  # Comprobar que la línea tiene el formato correcto
-            izena, numero = linea.split(",", 1)  # Dividir en nombre y número (solo una coma)
-            if izena.strip().lower() == nombre.lower():  # Comparar nombres ignorando mayúsculas
-                return numero.strip()  # Devolver el número sin espacios extra
-    return None  # Si no se encuentra el nombre
+        if "," in linea: 
+            izena, numero = linea.split(",", 1) 
+            if izena.strip().lower() == nombre.lower():
+                return numero.strip() 
+    return None  
 
+def eliminar(nombre):
+    lineas = leer_fichero() 
+    nuevas_lineas = [] 
+
+    for linea in lineas:
+        if "," in linea:
+            izena, _ = linea.split(",", 1)
+            if izena.strip().lower() != nombre.lower(): 
+                nuevas_lineas.append(linea)
 def main():
     while True:
         menua()
         x = input("Aukeratu bat: ")
         
         if x == "1":
-            crear_fichero()  # Asegurarse de que el fichero existe
+            crear_fichero()  
             nombre = input("Sartu bezeroaren izena numeroa jakitzeko: ")
             numero = buscar_numero_por_nombre(nombre)
             
@@ -59,7 +62,8 @@ def main():
             print(f"{nombre} eta bere telefono zenbakia gorde dira.")
         
         elif x == "3":
-            print("Hola3")
+            nombre = input("Sartu bezero baten izena zenbakia ezabatzeko: ")
+            eliminar(nombre)
         
         elif x == "4":
             print("Eskerrikasko menua ikusteagatik")
