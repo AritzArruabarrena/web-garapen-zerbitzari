@@ -43,11 +43,11 @@ def datuak_bete(conectar):
 def taulak_ezabatu(conectar):
     kurtzorea = conectar.cursor()
     
-    kurtzorea.execute("SET FOREIGN_KEY_CHECKS = 0")  # Disable foreign key checks
+    kurtzorea.execute("SET FOREIGN_KEY_CHECKS = 0")  
     kurtzorea.execute("DROP TABLE IF EXISTS notak")
     kurtzorea.execute("DROP TABLE IF EXISTS ikasleak")
     kurtzorea.execute("DROP TABLE IF EXISTS ikasgaiak")
-    kurtzorea.execute("SET FOREIGN_KEY_CHECKS = 1")  # Re-enable foreign key checks
+    kurtzorea.execute("SET FOREIGN_KEY_CHECKS = 1")  
     
     conectar.commit()
     kurtzorea.close()
@@ -65,6 +65,78 @@ def datuak_ezabatu(conectar):
     kurtzorea.execute(Ikasleak_ezabatu)
     kurtzorea.execute(Ikasgai_ezabatu)
     kurtzorea.execute(notak_ezabatu)
+    
+    conectar.commit()
+    kurtzorea.close()
+    
+
+def ikaslea_sortu(conectar,kodea,izena,abizena):
+    
+    kurtzorea = conectar.cursor()
+    
+    Ikaslea_gehitu = "INSERT INTO ikasleak VALUES(%s, %s, %s)"
+    
+    datuak = (kodea,izena,abizena)
+    
+    kurtzorea.execute(Ikaslea_gehitu,datuak)
+    
+    conectar.commit()
+    kurtzorea.close()
+    
+
+def nota_sartu(conectar,notak,oharra,ikasle_kodea,ikasgai_kodea):
+    
+    kurtzorea = conectar.cursor()
+    
+    nota_sartu = "INSERT INTO notak VALUES(%s, %s, %s, %s)"
+    
+    datuak = (notak,oharra,ikasle_kodea,ikasgai_kodea)
+    
+
+    
+    kurtzorea.execute(nota_sartu,datuak)
+    
+    conectar.commit()
+    kurtzorea.close()
+
+
+def nota_aldatu(conectar,notak,ikasle_kodea, ikasgai_kodea):
+    
+    kurtzorea = conectar.cursor()
+    
+    nota_aktualizatu = "UPDATE notak SET notak =  %s WHERE ikasle_kodea = %s OR ikasgai_kodea = %s"
+    
+    datuak = (notak,ikasle_kodea,ikasgai_kodea)
+    
+    kurtzorea.execute(nota_aktualizatu,datuak)
+    
+    conectar.commit()
+    kurtzorea.close()
+    
+
+def gehitu_ikasgaia(conectar,ikasgai_kodea,izena,maila,hizkuntza):
+    
+    kurtzorea = conectar.cursor()
+    
+    ikasgaia_gehitu = "INSERT INTO ikasgaiak VALUES(%s, %s, %s,%s)"
+    
+    datuak = (ikasgai_kodea,izena,maila,hizkuntza)
+    
+    kurtzorea.execute(ikasgaia_gehitu,datuak)
+    
+    conectar.commit()
+    kurtzorea.close()
+    
+
+def ezabatu_ikaslea(conectar,ikasle_kodea):
+    
+    kurtzorea = conectar.cursor()
+    
+    ikaslea_ezabatu = "DELETE FROM ikasleak WHERE ikasle_kodea = %s"
+    
+    datuak = (ikasle_kodea,)
+    
+    kurtzorea.execute(ikaslea_ezabatu,datuak)
     
     conectar.commit()
     kurtzorea.close()
