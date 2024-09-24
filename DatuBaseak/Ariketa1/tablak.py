@@ -132,11 +132,14 @@ def ezabatu_ikaslea(conectar,ikasle_kodea):
     
     kurtzorea = conectar.cursor()
     
-    ikaslea_ezabatu = "DELETE FROM ikasleak WHERE ikasle_kodea = %s"
+    try:
+        # Insert data into ikasleak table
+        query = 'DELETE FROM ikasleak WHERE ikasle_kodea = {} '
+        kurtzorea.execute(query.format(ikasle_kodea))
+        conectar.commit()
+        return 'Ikaslea ondo ezabatu da.'
     
-    datuak = (ikasle_kodea,)
+    except:
+        return 'Zerbait gaizki joan da.'
     
-    kurtzorea.execute(ikaslea_ezabatu,datuak)
-    
-    conectar.commit()
-    kurtzorea.close()
+
