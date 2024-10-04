@@ -1,0 +1,12 @@
+{% extends 'zerrenda/base.html' %}
+{% block content %}
+<ul>
+ {% for nota in notak %}
+ <li>{{ nota }}</li>  
+ <a href="{% url 'notak_editatu' nota.ikasle.id nota.ikasgai.id %}">
+    <button>Editatu</button>
+ </a>
+ <a href="{% url 'ikaslea_ezabatu' nota.ikasle.id nota.ikasgai.id %}"></a>
+ {% endfor %}
+</ul>
+{% endblock %}
