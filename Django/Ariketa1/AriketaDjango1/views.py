@@ -70,24 +70,13 @@ def notakEditatu_new(request, ikasle_id, ikasgai_id):
 
     return render(request, 'zerrenda/notakform.html', {'form': form})
 
-def ikasleaEzabatu(request, ikasle_id, ikasgai_id):
-    notak = Notak.objects.filter(ikasle_id=ikasle_id, ikasgai_id=ikasgai_id)
+def ikasleaEzabatu(request, ikasle_id):
+    ikaslea = Ikasle.objects.filter(id=ikasle_id) 
     
-    notakeditatu = notak.first()
+    ikaslea.delete()  
+    return redirect('default')
+
+
     
-    if not notakeditatu:
-        return render(request, 'error.html', {'message': 'No se encontró la nota'})
 
-    if request.method == 'POST':
-        form = NotakEditatuForm(request.POST, instance=notakeditatu)
-        if form.is_valid():
-            form.save()
-            return redirect('default')  
-    else:
-        form = NotakEditatuForm(instance=notakeditatu)
-
-    return render(request, 'zerrenda/base.html', {'form': form})
-
-
-
-
+         

@@ -7,5 +7,5 @@ urlpatterns = [
  path('Ikasgai/new/', views.ikasgai_new, name='zerrenda-ikasgai-new'),
  path('Notak/new/', views.notak_new, name='zerrenda-notak-new'),
  path("Notak/editatu/<int:ikasle_id>/<int:ikasgai_id>/", views.notakEditatu_new, name="notak_editatu"),
- path("Notak/ezabatu/<int:ikasle_id>/<int:ikasgai_id>/", views.ikasleaEzabatu, name="ikaslea_ezabatu")
+ path("Notak/ezabatu/<int:ikasle_id>/", views.ikasleaEzabatu, name="ikaslea_ezabatu")
 ]
