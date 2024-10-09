@@ -1,0 +1,32 @@
+{% extends 'zerrenda/index.html' %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h2>Alokairu lista</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Kotxe (Matrikula)</th>
+                    <th>Pertsona (Izena y Abizena)</th>
+                    <th>Alokairu data</th>
+                    <th>Itzulketa data</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for aloka in alokatu %}
+                <tr>
+                    <td>{{ aloka.id }}</td>
+                    <td>{{ aloka.kotxe_id.matrikula }} - {{ aloka.kotxe_id.marka }} {{ aloka.kotxe_id.modeloa }}</td>
+                    <td>{{ aloka.pertsona_id.izena }} {{ aloka.pertsona_id.abizena }}</td>
+                    <td>{{ aloka.alokairu_data }}</td>
+                    <td>{{ aloka.itzulketa_data }}</td>
+                    <td>
+                        <button class="btn btn-primary">Ezabatu</button>
+                      </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
