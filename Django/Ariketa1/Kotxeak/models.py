@@ -34,3 +34,4 @@ class Alokatu(models.Model):
         return f"Alokairua ID: {self.id}, Kotxe: {self.kotxe_id.matrikula}, Pertsona: {self.pertsona_id.izena} {self.pertsona_id.abizena}, Alokairu Data: {self.alokairu_data}, Itzulketa Data: {self.itzulketa_data}"
     
 
+ 
