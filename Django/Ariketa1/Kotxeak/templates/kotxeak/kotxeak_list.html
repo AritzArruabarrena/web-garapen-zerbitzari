@@ -1,0 +1,36 @@
+        {% extends 'kotxeak/kotxeko-datuak.html' %}
+
+        {% block content %}
+            <div class="container mt-4">
+                <h2>Kotxe lista</h2>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Matrikula</th>
+                            <th>Marka</th>
+                            <th>Modeloa</th>
+                            <th>Kolorea</th>
+                            <th>Urtea</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for kotxea in kotxe %}
+                        <tr>
+                            <td>{{ kotxea.matrikula }}</td>
+                            <td>{{ kotxea.marka }}</td>
+                            <td>{{ kotxea.modeloa }}</td>
+                            <td>{{ kotxea.kolorea }}</td>
+                            <td>{{ kotxea.urtea }}</td>
+                            <td>
+                                <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                            </td>
+                            <td>
+                                <button class="btn btn-primary"><i class="bi bi-pencil"></i></button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endblock %}
+
