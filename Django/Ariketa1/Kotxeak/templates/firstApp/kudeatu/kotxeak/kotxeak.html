@@ -1,0 +1,11 @@
+
+{% extends 'firstApp/base.html' %}
+{% block content %}
+    <h1>Kotxeko Datuak:</h1>
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <div class="d-flex flex-column">
+            <a href="{% url 'kotxeko-datuak-list' %}"><button class="btn btn-primary mb-2">Kotxeko datuak ikusi</button></a>
+            <button class="btn btn-primary">Kotxea gehitu</button>
+        </div>
+    </div>    
+{% endblock %}

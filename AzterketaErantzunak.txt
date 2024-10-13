@@ -1,0 +1,48 @@
+2. Django-k honelako egitura bat dauka.
+Django egitura MVC (Model-View-Controller) antzera diseinatuta dago, nahiz eta beraien izendapena desberdina den (MTV: Model-Template-View). Hona hemen elementu nagusiak eta beraien funtzioak:
+
+manage.py: Komando bidezko ekintzak exekutatzeko script bat da, esaterako, zerbitzaria abiarazi, migrazioak sortu, eta testak egin. Proiektuaren sarrera-puntua da, eta aplikazio osoa kudeatzeko erabiltzen da.
+
+settings.py: Proiektu osoaren konfigurazio fitxategia da. Bertan datu-basearen konexioa, instalatutako aplikazioak, middlewareak, estatikoak eta bestelako parametroak definitzen dira. Proiektuaren ezarpen orokorrak hemen kokatzen dira.
+
+models.py: Datu-basearen egitura definitzen duen fitxategia da. Hemen modeloak (datu-baseko taulak) definitzen dira Python klaseen bidez. Klase bakoitzak datu-basean taula bat ordezkatzen du, eta klase bakoitzeko atributuek taulako zutabeak definitzen dituzte.
+
+views.py: Logika definitzen duen fitxategia da. Eskaera bat jasotzen denean, zer datu itzuliko diren eta nola bistaratuko diren zehazten da hemen. Erabiltzaileari zer datu erakutsiko zaizkion eta nola tratatuko diren definitzen da.
+
+urls.py: Proiektuaren URLen mapa definitzen duen fitxategia da. URL bakoitzari dagokion view bat esleitzen zaio hemen, eta horrela erabiltzailearen eskaerak dagokion logikarekin lotzen dira.
+
+forms.py: Web orrialdeetan erabiltzaileak bete ditzakeen inprimakiak (forms) definitzen dira hemen. Django-n, inprimakiak Python klase bidez sortzen dira, eta datuen balidazioa eta tratamendua kudeatzen da fitxategi honetan.
+
+admin.py: Django-ren administrazio interfazea konfiguratzeko erabiltzen den fitxategia da. Hemen zehazten da zein modelo erakutsiko diren admin panelan, eta nola bistaratuko diren.
+
+__init__.py: Python-en modulu bat direktorio bat izatea ahalbidetzen duen fitxategi hutsa edo konfigurazio fitxategia da. Direktorioko fitxategiak modulu gisa tratatu ahal izateko beharrezkoa da.
+
+3. Zein ezberdintasun dago Proiektu, Aplikazio eta Modeloen artean?
+
+Proiektua: Django-n proiektua egitura handiena da eta aplikazio baten edo batzuen bilduma da. Proiektu batek hainbat aplikazio izan ditzake, eta proiektuaren konfigurazio orokorra settings.py fitxategian egiten da.
+
+Aplikazioa: Proiektu baten barruan dagoen modulu bat da. Aplikazio batek funtzio konkretu bat edo funtzio multzo bat izan dezake, esaterako blog bat edo erabiltzaileen kudeaketa sistema. Aplikazio bat isolatuta mantendu daiteke, eta proiektu desberdinetan berrerabilgarria izan daiteke.
+
+Modeloak: Datu-basearen egiturak adierazten dituzten Python klaseak dira. Aplikazio baten barruan datu-egiturak definitzen dira, eta Django-k automatikoki bihurtzen ditu datu-baseko taulatan. Modeloak dira datuak nola gorde eta erlazionatzen diren definitzeko erabili beharrekoak.
+
+4. Zergatik ekartzen du Djangok SQLite datu base bat integratua?
+
+Djangok SQLite datu-basea integratuta dakar hainbat arrazoi direla eta:
+
+Erraztasuna: SQLite konfigurazioa minimoa da. Ez du aparteko zerbitzaririk behar, fitxategi bakar batean oinarritzen da eta instalazio azkarra du. Hasiberrientzat edo prototipoak egiteko oso egokia da.
+Garapen azkarra: SQLite oso arina da eta garapen ingurune batean beharrezkoak diren tresnak eskaintzen ditu. Horri esker, aplikazio baten garapenean berehala hasi zaitezke datu-basea konfiguratzeko denbora galdu gabe.
+Proiektu txikientzako egokia: Eskala txikiko proiektu edo proiektu pertsonaletarako egokia izan daiteke, ez da beharrezkoa beste datu-base sistema bat erabiltzea erabilera sinpleetarako.
+Dena den, produkzio inguruneetan, eskalagarritasun arazoak direla eta, normalean datu-base sistema sendoagoak erabiltzea gomendatzen da (PostgreSQL, MySQL, etab.).
+
+5. Zer da Model Controller View egitura eta zelan islatzen da hori Django-n?
+
+Model-View-Controller (MVC) egitura software arkitektura eredua da. Aplikazioaren hiru geruza nagusi definitzen ditu:
+
+Modeloa (Model): Datuak eta datu-egiturak kudeatzen ditu. Hemen, datuen egituraketa eta datu-basearekin elkarreragina definitzen da.
+Kontrolatzailea (Controller): Erabiltzaileen ekintzak hartzen ditu, eta logika aplikatzen die. Kontrolatzaileak datuak eskatzen ditu modeloari eta bistaratzen ditu bistan. Django-n, honek View izena du.
+Bista (View): Erabiltzaileari erakusten zaion informazioa da, hau da, web orrialdean bistaratu beharreko edukia. Hau Django-n Template izenarekin ezagutzen da.
+Django-k MTV (Model-Template-View) egitura erabiltzen du:
+
+Model: Datu-egitura eta datu-basearekin interakzioa definitzen du.
+Template: HTML orrialdeak eta erabiltzaileari bistaratzen zaion edukia definitzen ditu.
+View: Logika kudeatzen du, eskaerei erantzun zuzena emanez eta modeloarekin elkarreraginez

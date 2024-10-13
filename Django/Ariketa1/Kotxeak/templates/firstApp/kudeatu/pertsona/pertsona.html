@@ -1,4 +1,5 @@
 {% load static %}
+{% extends 'firstApp/base.html' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +15,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body>
+    
     <!-- Barra de navegación actualizada para Bootstrap 5 -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
@@ -36,15 +38,13 @@
             </div>
         </div>
     </nav>
-    <h1>Kotxeko Datuak:</h1>
+    <h1>Pertsona Datuak:</h1>
     <div class="d-flex justify-content-center align-items-center vh-100">
         <div class="d-flex flex-column">
-            <a href="{% url 'kotxeko-datuak-ikusi' %}"><button class="btn btn-primary mb-2">Kotxeko datuak ikusi</button><a>
-            <button class="btn btn-primary">Kotxea gehitu</button>
+            <button class="btn btn-primary mb-2">Pertsona datuak ikusi</button>
+            <button class="btn btn-primary">Pertsona gehitu</button>
         </div>
     </div>    
-
-    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

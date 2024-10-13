@@ -1,0 +1,14 @@
+{% extends 'FirstApp/base.html' %}
+{% block content %}
+
+<h1>Kudeatu Notak</h1>
+<br>
+<a class="btn btn-primary" href="{% url 'new-nota' %}" role="button">Nota berria sartu</a>
+<br>
+<br>
+<a class="btn btn-primary" href="{% url 'edit-nota' %}" role="button">Nota aldatu</a>
+<br>
+<br>
+<a class="btn btn-primary" href="{% url 'nota-list' %}" role="button">Notak ikusi</a>
+
+{% endblock %}
