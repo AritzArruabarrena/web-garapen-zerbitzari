@@ -2,7 +2,7 @@ from django.shortcuts import render , redirect
 from .forms import *
 from .models import *
 from django.shortcuts import get_object_or_404
-
+from django.contrib.auth import logout
 # Create your views here.
 def ikasle_list(request):
     ikasleZerrenda=Ikasle.objects.all()
@@ -14,15 +14,16 @@ def notak_list(request):
 
 def ikasle_new(request):
     if request.method == 'POST':
-        form=IkasleForm(request.POST)
-        if form.is_valid:
+        form = IkasleForm(request.POST)
+        if form.is_valid():  # <- Add parentheses
             ikasle = form.save()
-            ikasle.save()
-        return redirect('default')
+            return redirect('default')  # <- Redirect after saving
 
     else:
-        form=IkasleForm()
-        return render(request, 'zerrenda/ikasleform.html', {'form':form})
+        form = IkasleForm()
+    
+    return render(request, 'zerrenda/ikasleform.html', {'form': form})
+
     
 
 def ikasgai_new(request):
@@ -75,6 +76,10 @@ def ikasleaEzabatu(request, ikasle_id):
     
     ikaslea.delete()  
     return redirect('default')
+
+def logout_view(request):
+    logout(request)
+    return redirect("default")
 
 
     
